@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="openacademy_wizard_session_form">
+            <field name="name">openacademy.wizard.create.session</field>
+            <field name="model">openacademy.wizard.session</field>
+            <field name="arch" type="xml">
+                <form string="Session wizard">
+                    <group>
+                        <field name="session_id"/>
+                        <field name="attendee_ids" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button name="subscribe" type="object" string="Subscribe" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_create_session">
+            <field name="name">Session creation wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">openacademy.wizard.session</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="openacademy_wizard_session_form"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_openacademy_session" />
+        </record>
+    </data>
+
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+    <menuitem name="Open Academy" id="openacademy.menu_root"/>
+
+    <menuitem name="Course"
+              id="openacademy.course"
+              parent="openacademy.menu_root"
+              action="openacademy_courses_action"/>
+
+    <menuitem name="Session"
+              id="openacademy.session"
+              parent="openacademy.menu_root"
+              action="openacademy_session_action"/>
+
+</odoo>
