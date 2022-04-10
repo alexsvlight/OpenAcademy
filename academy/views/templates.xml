@@ -1,19 +1,20 @@
 <odoo>
-<template id="index">
-    <t t-call="website.layout">
-        <t t-set="title">Academy</t>
-        <div class="oe_structure">
-            <div class="container">
-                <t t-foreach="teachers" t-as="teacher">
-                    <p>
-                        <a t-attf-href="/academy/{{ slug(teacher) }}">
-                        <t t-esc="teacher.name"/></a>
-                    </p>
-                </t>
+    <template id="index">
+        <t t-call="website.layout">
+            <t t-set="title">Academy</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-foreach="teachers" t-as="teacher">
+                        <p>
+                            <a t-attf-href="/academy/{{ slug(teacher) }}">
+                                <t t-esc="teacher.name"/>
+                            </a>
+                        </p>
+                    </t>
+                </div>
             </div>
-        </div>
-    </t>
-</template>
+        </t>
+    </template>
 
     <template id="biography">
         <t t-call="website.layout">
@@ -22,7 +23,9 @@
             <div class="oe_structure">
                 <div class="container">
                     <h3 t-field="person.name"/>
-                    <p>Last modified: <i t-field="person.write_date" t-options='{"widget": "relative"}'/></p>
+                    <p>Last modified:
+                        <i t-field="person.write_date" t-options='{"widget": "relative"}'/>
+                    </p>
                     <div t-field="person.biography"/>
                 </div>
             </div>
@@ -30,4 +33,13 @@
         </t>
     </template>
 
+    <template id="product_item_hide_no_price" inherit_id="website_sale.product_price">
+        <xpath expr="//span[hasclass('oe_price')]" position="attributes">
+            <attribute name="t-if">product.price &gt; 0</attribute>
+        </xpath>
+    </template>
+
+    <record id="website_sale.products_categories" model="ir.ui.view">
+        <field name="active" eval="True"/>
+    </record>
 </odoo>

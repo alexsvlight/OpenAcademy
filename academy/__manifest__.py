@@ -20,9 +20,8 @@
     'version': '15.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['mail','website_sale'],
+    'depends': ['mail','website_sale', 'product'],
     # 'depends': ['website_sale', 'product'],
-    # 'depends': ['mail', 'website_sale'],
 
     # always loaded
     'data': [
