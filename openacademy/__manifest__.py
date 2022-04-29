@@ -23,12 +23,12 @@
 
     # always loaded
     'data': [
-        'security/groups.xml',
+        'security/openacademy_groups.xml',
         'security/ir.model.access.csv',
         'views/course_views.xml',
         'views/session_views.xml',
         'views/res_partner_views.xml',
-        'views/menu.xml',
+        'views/openacademy_menu.xml',
         'views/session_dashboard.xml',
         'wizard/wizard_session_view.xml',
         'reports/report_sessions.xml',
