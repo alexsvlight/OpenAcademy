@@ -1,4 +1,5 @@
 <odoo>
+
     <menuitem name="Open Academy" id="openacademy.menu_root"/>
 
     <menuitem name="Course"
