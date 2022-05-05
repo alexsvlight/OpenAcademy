@@ -28,10 +28,9 @@
         'views/openacademy_course_views.xml',
         'views/openacademy_session_views.xml',
         'views/openacademy_menu.xml',
-        # 'views/openacademy_session_dashboard.xml',
         'views/res_partner_views.xml',
-        'wizard/wizard_session_view.xml',
-        'reports/report_sessions.xml',
+        'wizard/create_openacademy_session_view.xml',
+        'reports/openacademy_session_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

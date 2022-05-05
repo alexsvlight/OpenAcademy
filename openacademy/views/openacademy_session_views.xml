@@ -1,12 +1,6 @@
 <odoo>
 
-    <record model="ir.actions.act_window" id="openacademy_session_action">
-        <field name="name">Session</field>
-        <field name="res_model">openacademy.session</field>
-        <field name="view_mode">tree,form,calendar,gantt,graph,kanban</field>
-    </record>
-
-    <record model="ir.ui.view" id="openacademy_session_view_form">
+    <record id="openacademy_session_view_form" model="ir.ui.view">
         <field name="name">openacademy.session.view.form</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
@@ -15,7 +9,7 @@
                     <group colspan="2" col="2">
                         <field name="active"/>
                         <field name="name"/>
-                        <field name="instructor"/>
+                        <field name="instructor_id"/>
                     </group>
                     <group colspan="2" col="2">
                         <field name="date_start"/>
@@ -24,22 +18,22 @@
                         <field name="taken_seats" widget="progressbar"/>
                     </group>
                     <group colspan="4" col="2">
-                        <field name="course"/>
-                        <field name="attendees" widget="many2many_tags"/>
+                        <field name="course_id"/>
+                        <field name="attendees_ids" widget="many2many_tags"/>
                     </group>
                 </group>
             </form>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="openacademy_session_list">
+    <record id="openacademy_session_view_tree" model="ir.ui.view">
         <field name="name">openacademy.session.view.tree</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
             <tree decoration-info="duration&lt;5" decoration-danger="duration&gt;15">
                 <field name="name"/>
-                <field name="course"/>
-                <field name="instructor"/>
+                <field name="course_id"/>
+                <field name="instructor_id"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
                 <field name="number_seats"/>
@@ -50,14 +44,14 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="openacademy_session_search">
+    <record id="openacademy_session_view_search" model="ir.ui.view">
         <field name="name">openacademy.session.view.search</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
-                <field name="course"/>
-                <field name="instructor"/>
+                <field name="course_id"/>
+                <field name="instructor_id"/>
                 <field name="date_start"/>
                 <field name="number_seats"/>
                 <field name="taken_seats" widget="progressbar"/>
@@ -65,48 +59,48 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="openacademy_session_calendar">
+    <record id="openacademy_session_view_calendar" model="ir.ui.view">
         <field name="name">openacademy.session.view.calendar</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <calendar string="Session_calendar" date_start="date_start" date_stop="date_end" color='course'>
+            <calendar string="Session_calendar" date_start="date_start" date_stop="date_end" color='course_id'>
                 <field name="name"/>
-                <field name="instructor"/>
-                <field name="course"/>
+                <field name="instructor_id"/>
+                <field name="course_id"/>
                 <field name="taken_seats" widget="progressbar"/>
             </calendar>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="openacademy_session_gantt">
+    <record id="openacademy_session_view_gantt" model="ir.ui.view">
         <field name="name">openacademy.session.view.gantt</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
             <gantt string="Gantt sessions"
                    date_start='date_start'
                    date_stop="date_end"
-                   default_group_by="instructor"/>
+                   default_group_by="instructor_id"/>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="openacademy_session_graph">
+    <record id="openacademy_session_view_graph" model="ir.ui.view">
         <field name="name">openacademy.session.view.graph</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
             <graph string="Graph sessions">
-                <field name="course"/>
+                <field name="course_id"/>
                 <field name="qty_seats" type="measure"/>
             </graph>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="openacademy_session_kanban">
+    <record id="openacademy_session_view_kanban" model="ir.ui.view">
         <field name="name">openacademy.session.view.kanban</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="course" sample="1">
+            <kanban default_group_by="course_id" sample="1">
                 <field name="name"/>
-                <field name="course"/>
+                <field name="course_id"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">
@@ -126,24 +120,34 @@
     </record>
 
 
-    <record model="ir.actions.act_window" id="act_session_graph">
+    <record id="openacademy_session_action" model="ir.actions.act_window">
+        <field name="name">Session</field>
+        <field name="res_model">openacademy.session</field>
+        <field name="view_mode">tree,form,calendar,gantt,graph,kanban</field>
+    </record>
+
+    <record id="openacademy_session_graph_action" model="ir.actions.act_window">
         <field name="name">Attendees by course</field>
         <field name="res_model">openacademy.session</field>
         <field name="view_mode">graph</field>
-        <field name="view_id" ref="openacademy_session_graph"/>
+        <field name="view_id" ref="openacademy_session_view_graph"/>
     </record>
-    <record model="ir.actions.act_window" id="act_session_calendar">
+
+    <record id="openacademy_session_calendar_action" model="ir.actions.act_window">
         <field name="name">Sessions</field>
         <field name="res_model">openacademy.session</field>
         <field name="view_mode">calendar</field>
-        <field name="view_id" ref="openacademy_session_calendar"/>
+        <field name="view_id" ref="openacademy_session_view_calendar"/>
     </record>
-    <record model="ir.actions.act_window" id="act_course_list">
+
+    <record id="openacademy_course_list_action" model="ir.actions.act_window">
         <field name="name">Courses</field>
         <field name="res_model">openacademy.course</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <record model="ir.ui.view" id="board_session_form">
+
+
+    <record id="openacademy_board_session_form" model="ir.ui.view">
         <field name="name">Session Dashboard Form</field>
         <field name="model">board.board</field>
         <field name="arch" type="xml">
@@ -152,34 +156,29 @@
                     <column>
                         <action
                                 string="Attendees by course"
-                                name="%(act_session_graph)d"
+                                name="%(openacademy_session_graph_action)d"
                                 height="150"
                                 width="510"/>
                         <action
                                 string="Sessions"
-                                name="%(act_session_calendar)d"/>
+                                name="%(openacademy_session_calendar_action)d"/>
                     </column>
                     <column>
                         <action
                                 string="Courses"
-                                name="%(act_course_list)d"/>
+                                name="%(openacademy_course_list_action)d"/>
                     </column>
                 </board>
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="open_board_session">
+
+    <record id="openacademy_dashboard_action" model="ir.actions.act_window">
         <field name="name">Session Dashboard</field>
         <field name="res_model">board.board</field>
         <field name="view_mode">form</field>
         <field name="usage">menu</field>
-        <field name="view_id" ref="board_session_form"/>
+        <field name="view_id" ref="openacademy_board_session_form"/>
     </record>
-
-    <menuitem
-            name="Session Dashboard" parent="openacademy.menu_root"
-            action="open_board_session"
-            sequence="1"
-            id="menu_board_session"/>
 
 </odoo>

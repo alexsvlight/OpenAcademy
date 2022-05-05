@@ -1,15 +1,21 @@
 <odoo>
 
-    <menuitem name="Open Academy" id="openacademy.menu_root"/>
+    <menuitem id="openacademy_menu_root"
+              name="Open Academy"/>
 
-    <menuitem name="Course"
-              id="openacademy.course"
-              parent="openacademy.menu_root"
+    <menuitem id="openacademy_courses_menu"
+              name="Course"
+              parent="openacademy_menu_root"
               action="openacademy_courses_action"/>
 
-    <menuitem name="Session"
-              id="openacademy.session"
-              parent="openacademy.menu_root"
+    <menuitem id="openacademy_sessions_menu"
+              name="Session"
+              parent="openacademy_menu_root"
               action="openacademy_session_action"/>
 
+    <menuitem
+            id="menu_board_session"
+            name="Session Dashboard" parent="openacademy_menu_root"
+            action="openacademy_dashboard_action"
+            sequence="1" />
 </odoo>

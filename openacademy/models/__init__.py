@@ -1,3 +1,3 @@
-from . import openacademy_courses
-from . import openacademy_sessions
+from . import openacademy_course
+from . import openacademy_session
 from . import res_partner

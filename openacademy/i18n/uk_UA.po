@@ -103,7 +103,7 @@ msgstr "Кінцева дата"
 #. module: openacademy
 #: model_terms:ir.ui.view,arch_db:openacademy.openacademy_session_gantt
 msgid "Gantt sessions"
-msgstr "Даграма Ганта"
+msgstr "Діаграма Ганта"
 
 #. module: openacademy
 #: model_terms:ir.ui.view,arch_db:openacademy.openacademy_session_graph
@@ -145,7 +145,7 @@ msgstr "Інструктор"
 #: code:addons/openacademy/models/sessions.py:0
 #, python-format
 msgid "Instructor can't be an attendee"
-msgstr "Інструктор не може біти відвідувачем"
+msgstr "Інструктор не може бути відвідувачем"
 
 #. module: openacademy
 #: code:addons/openacademy/models/res_partner.py:0

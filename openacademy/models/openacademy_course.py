@@ -5,8 +5,9 @@ class Course(models.Model):
     _description = _('Course')
     name = fields.Char(_("Title"), required=True)
     description = fields.Text()
-    responsible_user = fields.Many2one('res.users', string=_('Responsible user'))
-    session_id = fields.One2many('openacademy.session', 'course', string=_('Session'), readonly=True)
+    responsible_id = fields.Many2one('res.users', string=_('Responsible user'))
+    # session_ids = fields.One2many('openacademy.session', 'course_id', string=_('Session'), readonly=True)
+    session_ids = fields.One2many('openacademy.session', 'course_id', string=_('Session'), readonly=True)
     _sql_constraints = [
         ('name_diff',
          'CHECK(name != description)',

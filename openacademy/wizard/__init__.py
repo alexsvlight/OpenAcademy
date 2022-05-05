@@ -1,1 +1,1 @@
-from . import wizard_session
+from . import create_openacademy_session
